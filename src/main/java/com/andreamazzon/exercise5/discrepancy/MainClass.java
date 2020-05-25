@@ -2,6 +2,8 @@ package com.andreamazzon.exercise5.discrepancy;
 
 import java.util.Arrays;
 
+import static com.andreamazzon.exercise5.discrepancy.DiscrepancyOneDimension.getNumberOfElementsInRange;
+
 /**
  * This class has a main method where we compute the discrepancy and star
  * discrepancy of two sets and where we print the star discrepancy of Van der
@@ -14,6 +16,7 @@ public class MainClass {
 
 	public static void main(String[] args) throws Exception {
 		double[] firstSet = { 0.125, 0.25, 0.5, 0.75 };
+        System.out.println(getNumberOfElementsInRange(firstSet, 0.25, 0.5, true));
 		System.out.println("The discrepancy of the set " + Arrays.toString(firstSet) + " is "
 				+ DiscrepancyOneDimension.getDiscrepancy(firstSet));
 		System.out.println("The star discrepancy of the set " + Arrays.toString(firstSet) + " is "

@@ -10,25 +10,30 @@ import com.andreamazzon.exercise3.montecarlo.MonteCarloExperimentsWithExactResul
  * MonteCarloPiFromTwoDimensionsIntegration.
  *
  * @author Andrea Mazzon
- *
  */
 public class MonteCarloPiFromTwoDimensionsIntegration extends MonteCarloExperimentsWithExactResult {
 
-	private MonteCarloIntegrationTwoDimensions monteCarloPiIndicator;
+    private MonteCarloIntegrationTwoDimensions monteCarloPiIndicator;
 
-	// public constructor
-	public MonteCarloPiFromTwoDimensionsIntegration(int numberOfMonteCarloComputations, int numberOfDrawings) {
-		/*
-		 * give the implementation of the constructor. You have to give a value to the
-		 * fields exactResult and monteCarloPiIndicator. If you don't know how to
-		 * initialize a BiFunction<Double, Double, Double> object, here is an example:
-		 * BiFunction<Double, Double, Double> function = ((x, y) -> x * y represents
-		 * f(x,y)=x*y
-		 */
-	}
+    // public constructor
+    public MonteCarloPiFromTwoDimensionsIntegration(int numberOfMonteCarloComputations, int numberOfDrawings) {
+        /*
+         * give the implementation of the constructor. You have to give a value to the
+         * fields exactResult and monteCarloPiIndicator. If you don't know how to
+         * initialize a BiFunction<Double, Double, Double> object, here is an example:
+         * BiFunction<Double, Double, Double> function = ((x, y) -> x * y represents
+         * f(x,y)=x*y
+         */
+        monteCarloPiIndicator = new MonteCarloIntegrationTwoDimensions(
+            (x, y) -> x * x + y * y < 1 ? (double) 4 : (double) 0,
+            numberOfMonteCarloComputations,
+            numberOfDrawings
+        );
+        this.exactResult = Math.PI;
+    }
 
-	@Override
-	protected void generateMonteCarloComputations() {
-		// give the implementation of this method
-	}
+    @Override
+    protected void generateMonteCarloComputations() {
+        monteCarloComputations = monteCarloPiIndicator.getComputations();
+    }
 }

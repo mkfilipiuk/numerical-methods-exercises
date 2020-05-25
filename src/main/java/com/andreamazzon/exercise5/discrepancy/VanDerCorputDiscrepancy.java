@@ -7,6 +7,10 @@ import net.finmath.plots.Named;
 import net.finmath.plots.Plot;
 import net.finmath.plots.Plot2D;
 
+import static com.andreamazzon.exercise4.VanDerCorputSequence.getVanDerCorputSequence;
+import static com.andreamazzon.exercise5.discrepancy.DiscrepancyOneDimension.getDiscrepancy;
+import static com.andreamazzon.exercise5.discrepancy.DiscrepancyOneDimension.getStarDiscrepancy;
+
 /**
  * The goal of this class is to compute the discrepancy and the star discrepancy
  * of a Van der Corput sequence of a given length and given base, and to plot
@@ -30,7 +34,7 @@ public class VanDerCorputDiscrepancy {
 	 * @return the star discrepancy
 	 */
 	public static double getVanDerCorputStarDiscrepancy(int sequenceLength, int base) {
-		return 0;
+		return getStarDiscrepancy(getVanDerCorputSequence(sequenceLength, base));
 	}
 
 	/**
@@ -44,7 +48,7 @@ public class VanDerCorputDiscrepancy {
 	 * @return the discrepancy
 	 */
 	public static double getVanDerCorputDiscrepancy(int sequenceLength, int base) {
-		return 0;
+        return getDiscrepancy(getVanDerCorputSequence(sequenceLength, base));
 	}
 
 	/**
@@ -65,7 +69,7 @@ public class VanDerCorputDiscrepancy {
 		 */
 		final DoubleUnaryOperator starDiscrepancyFunction = (sequenceLength) -> {
 			// return the star discrepancy of the sequence of length sequenceLength
-			return 0;
+            return getVanDerCorputStarDiscrepancy((int) sequenceLength, base);
 		};
 
 		/*
@@ -105,7 +109,7 @@ public class VanDerCorputDiscrepancy {
 		 */
 		final DoubleUnaryOperator discrepancyFunction = (sequenceLength) -> {
 			// return the star discrepancy of the sequence of length sequenceLength
-			return 0;
+			return getVanDerCorputDiscrepancy((int) sequenceLength, base);
 		};
 
 		final Plot plot = new Plot2D(2 /* min value on the x-axis */, maxSequenceLength, /* max value */
