@@ -29,8 +29,8 @@ public class CLTMeanConfidenceInterval extends MeanConfidenceInterval {
 	@Override
 	public double getLowerBoundConfidenceInterval(double level) {
 		NormalRandomVariable normal = new NormalRandomVariable(0, 1);
-		return randomVariable.getAnalyticMean() - randomVariable.getAnalyticStdDeviation() / Math.sqrt(sampleSize)
-				* normal.quantileFunction((1 + level) / 2);
+		return randomVariable.getAnalyticMean() + randomVariable.getAnalyticStdDeviation() / Math.sqrt(sampleSize)
+				* normal.getQuantileFunction((1 - level) / 2);
 	}
 
 	/**
@@ -44,6 +44,6 @@ public class CLTMeanConfidenceInterval extends MeanConfidenceInterval {
 	public double getUpperBoundConfidenceInterval(double level) {
 		NormalRandomVariable normal = new NormalRandomVariable(0, 1);
 		return randomVariable.getAnalyticMean() + randomVariable.getAnalyticStdDeviation() / Math.sqrt(sampleSize)
-				* normal.quantileFunction((1 + level) / 2);
+				* normal.getQuantileFunction((1 + level) / 2);
 	}
 }

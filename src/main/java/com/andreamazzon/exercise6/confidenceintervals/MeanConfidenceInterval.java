@@ -14,32 +14,41 @@ import com.andreamazzon.exercise6.randomvariables.RandomVariable;
  * inequality.
  *
  * @author Andrea Mazzon
- *
  */
 public abstract class MeanConfidenceInterval {
-	protected RandomVariable randomVariable;// it will be inherited and initialized
-	protected int sampleSize;// it will be inherited and initialized
+    protected RandomVariable randomVariable;// it will be inherited and initialized
+    protected int sampleSize;// it will be inherited and initialized
 
-	/*
-	 * two abstract methods. The confidence interval is specific of the limit
-	 * theorem used to compute it.
-	 */
-	public abstract double getLowerBoundConfidenceInterval(double level);
+    /*
+     * two abstract methods. The confidence interval is specific of the limit
+     * theorem used to compute it.
+     */
+    public abstract double getLowerBoundConfidenceInterval(double level);
 
-	public abstract double getUpperBoundConfidenceInterval(double level);
+    public abstract double getUpperBoundConfidenceInterval(double level);
 
-	// pre implemented at abstract level
-	/**
-	 * It computes the frequency with which the mean of the sample falls inside the
-	 * confidence interval for a given confidence level.
-	 *
-	 * @param numberOfMeanComputations, the number of the computations of the sample
-	 *                                  mean
-	 * @param level,                    the level of the confidence interval
-	 * @return the frequency: the number of mean samples within the interval divided
-	 *         by the number of mean computations
-	 */
-	public double frequenceOfInterval(int numberOfMeanComputations, double level) {
-		return 0;
-	}
+    // pre implemented at abstract level
+
+    /**
+     * It computes the frequency with which the mean of the sample falls inside the
+     * confidence interval for a given confidence level.
+     *
+     * @param numberOfMeanComputations, the number of the computations of the sample
+     *                                  mean
+     * @param level,                    the level of the confidence interval
+     * @return the frequency: the number of mean samples within the interval divided
+     * by the number of mean computations
+     */
+    public double frequenceOfInterval(int numberOfMeanComputations, double level) {
+        var counter = 0;
+        var lowerBound = getLowerBoundConfidenceInterval(level);
+        var upperBound = getUpperBoundConfidenceInterval(level);
+        for (int i = 0; i < numberOfMeanComputations; ++i) {
+		    var mean = randomVariable.getSampleMean(sampleSize);
+		    if (mean > lowerBound && mean < upperBound) {
+		        counter++;
+            }
+        }
+        return ((float)counter)/numberOfMeanComputations;
+    }
 }

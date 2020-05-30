@@ -28,7 +28,7 @@ public class ConfidenceIntervalsTesting {
 		CLTMeanConfidenceInterval cLTInterval = new CLTMeanConfidenceInterval(exponential, sampleSize);
 
 		System.out.println("The Chebyshev confidence interval boundaries at a " + confidenceLevel * 100
-				+ "% confidence level  for lambda  after " + sampleSize + " drawings are \n"
+				+ "% confidence level  for lambda " + lambda + " after " + sampleSize + " drawings are \n"
 				+ chebychevInterval.getLowerBoundConfidenceInterval(confidenceLevel) + " and "
 				+ chebychevInterval.getUpperBoundConfidenceInterval(confidenceLevel));
 
