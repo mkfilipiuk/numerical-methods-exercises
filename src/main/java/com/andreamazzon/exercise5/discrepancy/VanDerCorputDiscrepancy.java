@@ -3,8 +3,9 @@ package com.andreamazzon.exercise5.discrepancy;
 import java.util.Arrays;
 import java.util.function.DoubleUnaryOperator;
 
+import com.andreamazzon.exercise4.VanDerCorputSequence;
+
 import net.finmath.plots.Named;
-import net.finmath.plots.Plot;
 import net.finmath.plots.Plot2D;
 
 import static com.andreamazzon.exercise4.VanDerCorputSequence.getVanDerCorputSequence;
@@ -76,12 +77,12 @@ public class VanDerCorputDiscrepancy {
 		 * a function returning log(x)/x for a double n. In the plot, x will be the size
 		 * of the Van der Corput sequences.
 		 */
-		final DoubleUnaryOperator logNOverN = (x) -> {
+		DoubleUnaryOperator logNOverN = (x) -> {
 
 			return Math.log(x) / x;
 		};
 
-		final Plot plot = new Plot2D(2 /* min value on the x-axis */, maxSequenceLength, /* max value */
+		Plot2D plot = new Plot2D(2 /* min value on the x-axis */, maxSequenceLength, /* max value */
 				maxSequenceLength - 2, /* number of plotted points: length 1 and 2 are not considered */
 				Arrays.asList(new Named<DoubleUnaryOperator>("Star discrepancy", starDiscrepancyFunction),
 						new Named<DoubleUnaryOperator>("Log(n)/n", logNOverN))/* functions plotted */);
@@ -112,7 +113,7 @@ public class VanDerCorputDiscrepancy {
 			return getVanDerCorputDiscrepancy((int) sequenceLength, base);
 		};
 
-		final Plot plot = new Plot2D(2 /* min value on the x-axis */, maxSequenceLength, /* max value */
+		Plot2D plot = new Plot2D(2 /* min value on the x-axis */, maxSequenceLength, /* max value */
 				maxSequenceLength - 2, /* number of plotted points: length 1 and 2 are not considered */
 				Arrays.asList(
 						new Named<DoubleUnaryOperator>("Star discrepancy", discrepancyFunction))/* function plotted */);
