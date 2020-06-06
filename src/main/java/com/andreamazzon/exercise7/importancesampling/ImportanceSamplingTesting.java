@@ -23,27 +23,27 @@ public class ImportanceSamplingTesting {
 		/*
 		 * we do 1000 tests in order to get a better idea of the difference between
 		 * standard sampling and importance sampling
-		 */
-		int numberOfTests = 10000;
+         */
+        int numberOfTests = 10000;
 
-		double barrier = 7.0;// we want compute P(X > barrier)
+        double barrier = 7.0;// we want compute P(X > barrier)
 
-		ExponentialRandomVariable exponential = new ExponentialRandomVariable(1.0);
-		// the mean is the barrier itself!
-		NormalRandomVariable shiftedNormal = new NormalRandomVariable(barrier, 1.0);
-		DoubleUnaryOperator indicatorIntegrand = x -> (x > barrier) ? 1.0 : 0.0; // 1_{X > barrier}
+        ExponentialRandomVariable exponential = new ExponentialRandomVariable(1.0);
+        // the mean is the barrier itself!
+        NormalRandomVariable shiftedNormal = new NormalRandomVariable(barrier, 1.0);
+        DoubleUnaryOperator indicatorIntegrand = x -> (x > barrier) ? 1.0 : 0.0; // 1_{X > barrier}
 
-		double analyticResult = 1 - exponential.cdfFunction(barrier);
+        double analyticResult = 1 - exponential.getCumulativeDistributionFunction(barrier);
 
-		// we now compare the two methods
+        // we now compare the two methods
 
-		// number of times when the error of standard sampling is lower
-		int numberOffWinsStandardSampling = 0;
-		// number of times when the error of importance sampling is lower
-		int numberOffWinsImportanceSampling = 0;
+        // number of times when the error of standard sampling is lower
+        int numberOffWinsStandardSampling = 0;
+        // number of times when the error of importance sampling is lower
+        int numberOffWinsImportanceSampling = 0;
 
-		double averagePercentualErrorStandardSampling = 0.0;
-		double averagePercentualErrorImportanceSampling = 0.0;
+        double averagePercentualErrorStandardSampling = 0.0;
+        double averagePercentualErrorImportanceSampling = 0.0;
 
 		for (int i = 0; i < numberOfTests; i++) {
 

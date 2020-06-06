@@ -44,38 +44,11 @@ public abstract class MeanConfidenceInterval {
         var lowerBound = getLowerBoundConfidenceInterval(level);
         var upperBound = getUpperBoundConfidenceInterval(level);
         for (int i = 0; i < numberOfMeanComputations; ++i) {
-		    var mean = randomVariable.getSampleMean(sampleSize);
-		    if (mean > lowerBound && mean < upperBound) {
-		        counter++;
+            var mean = randomVariable.getSampleMean(sampleSize);
+            if (mean > lowerBound && mean < upperBound) {
+                counter++;
             }
         }
-        return ((float)counter)/numberOfMeanComputations;
+        return ((float) counter) / numberOfMeanComputations;
     }
-	// pre implemented at abstract level
-	/**
-	 * It computes the frequency with which the mean of the sample falls inside the
-	 * confidence interval for a given confidence level.
-	 *
-	 * @param numberOfMeanComputations, the number of the computations of the sample
-	 *                                  mean
-	 * @param level,                    the level of the confidence interval
-	 * @return the frequency: the number of mean samples within the interval divided
-	 *         by the number of mean computations
-	 */
-	public double frequenceOfInterval(int numberOfMeanComputations, double level) {
-		double numberOfTimesInsideTheInterval = 0;
-		// computed with CLT or Chebychev depending on the object calling
-		double lowerBound = getLowerBoundConfidenceInterval(level);
-		// computed with CLT or Chebychev depending on the object calling
-		double upperBound = getUpperBoundConfidenceInterval(level);
-
-		double sampleMean;
-		for (int i = 0; i < numberOfMeanComputations; i++) {
-			sampleMean = randomVariable.getSampleMean(sampleSize); // sample mean
-			if (sampleMean > lowerBound && sampleMean < upperBound) {
-				numberOfTimesInsideTheInterval++; // sample mean within the confidence interval
-			}
-		}
-		return numberOfTimesInsideTheInterval / numberOfMeanComputations;
-	}
 }

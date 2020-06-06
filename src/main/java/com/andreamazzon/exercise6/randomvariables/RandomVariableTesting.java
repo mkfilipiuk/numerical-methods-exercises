@@ -32,23 +32,23 @@ public class RandomVariableTesting {
 
 		System.out.println("Normal random variable: comparing Empirical mean and std dev to mu and sigma");
 
-		System.out.println("Sample mean: " + normalSampler.getSampleMean(numberOfSimulations));
-		System.out.println("Mu: " + normalSampler.getAnalyticMean());
+        System.out.println("Sample mean: " + normalSampler.getSampleMean(numberOfSimulations));
+        System.out.println("Mu: " + normalSampler.getAnalyticMean());
 
-		System.out.println("Sample std dev: " + normalSampler.getSampleStdDeviation(numberOfSimulations));
-		System.out.println("Sigma: " + normalSampler.getAnalyticStdDeviation());
+        System.out.println("Sample std dev: " + normalSampler.getSampleStdDeviation(numberOfSimulations));
+        System.out.println("Sigma: " + normalSampler.getAnalyticStdDeviation());
 
-		System.out.println();
+        System.out.println();
 
-		double prob = 0.95;
+        double prob = 0.95;
 
-		double y = normalSampler.quantileFunction(prob);
-		System.out.println("The quantile of a probability of " + prob + " of a  normal random variable of mean " + mu
-				+ " and std deviation " + sigma + " is " + y);
+        double y = normalSampler.getQuantileFunction(prob);
+        System.out.println("The quantile of a probability of " + prob + " of a  normal random variable of mean " + mu
+            + " and std deviation " + sigma + " is " + y);
 
-		System.out.println("\n");
+        System.out.println("\n");
 
-		System.out.println("The cumulative distribution  function at " + y + " is " + normalSampler.cdfFunction(y));
+        System.out.println("The cumulative distribution  function at " + y + " is " + normalSampler.getCumulativeDistributionFunction(y));
 
-	}
+    }
 }
