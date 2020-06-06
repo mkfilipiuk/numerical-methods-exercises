@@ -10,7 +10,7 @@ import com.andreamazzon.exercise6.randomvariables.RandomVariable;
  * the frequency at which the effective mean of the sample falls in the
  * confidence interval for a given confidence level. It will be inherited by
  * CLTMeanConfidenceInterval, computing the intervals basing on the Central
- * Limit Theorem, and by ChecychevMeanConfidenceInterval, which uses Chebychev
+ * Limit Theorem, and by ChebychevMeanConfidenceInterval, which uses Chebychev
  * inequality.
  *
  * @author Andrea Mazzon
@@ -51,4 +51,31 @@ public abstract class MeanConfidenceInterval {
         }
         return ((float)counter)/numberOfMeanComputations;
     }
+	// pre implemented at abstract level
+	/**
+	 * It computes the frequency with which the mean of the sample falls inside the
+	 * confidence interval for a given confidence level.
+	 *
+	 * @param numberOfMeanComputations, the number of the computations of the sample
+	 *                                  mean
+	 * @param level,                    the level of the confidence interval
+	 * @return the frequency: the number of mean samples within the interval divided
+	 *         by the number of mean computations
+	 */
+	public double frequenceOfInterval(int numberOfMeanComputations, double level) {
+		double numberOfTimesInsideTheInterval = 0;
+		// computed with CLT or Chebychev depending on the object calling
+		double lowerBound = getLowerBoundConfidenceInterval(level);
+		// computed with CLT or Chebychev depending on the object calling
+		double upperBound = getUpperBoundConfidenceInterval(level);
+
+		double sampleMean;
+		for (int i = 0; i < numberOfMeanComputations; i++) {
+			sampleMean = randomVariable.getSampleMean(sampleSize); // sample mean
+			if (sampleMean > lowerBound && sampleMean < upperBound) {
+				numberOfTimesInsideTheInterval++; // sample mean within the confidence interval
+			}
+		}
+		return numberOfTimesInsideTheInterval / numberOfMeanComputations;
+	}
 }
